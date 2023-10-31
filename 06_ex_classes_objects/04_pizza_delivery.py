@@ -29,7 +29,7 @@ class PizzaDelivery:
             return f"Please check again the desired quantity of {ingredient}!"
         self.ingredients[ingredient] -= quantity
         self.update_bill(-quantity, price_per_quantity)
-        
+
     def make_order(self):
         self.ordered = True
         return (f"You've ordered pizza {self.name} prepared "
