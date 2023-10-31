@@ -41,7 +41,7 @@ class Vet:
 # print(peter.unregister_animal("Tom"))
 # print(peter.info())
 # print(george.info())
-#
+
 # import unittest
 #
 #
