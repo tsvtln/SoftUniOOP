@@ -5,21 +5,21 @@ from project.topping import Topping
 
 
 class Pizza:
-    def __init__(self, name: str, dough: Type[Dough], max_number_of_toppings: int, toppings: dict):
+    def __init__(self, name: str, dough: Dough, max_number_of_toppings: int):
         self.name = name
         self.dough = dough
         self.max_number_of_toppings = max_number_of_toppings
-        self.toppings = toppings
-    
+        self.toppings: dict[Topping.topping_type, Topping.weight] = {}
+
     @property
     def name(self):
-        return self.__dough
+        return self.__name
     
     @name.setter
     def name(self, value):
         if value == '':
             raise ValueError("The name cannot be an empty string")
-        self.__dough = value
+        self.__name = value
         
     @property
     def dough(self):
@@ -29,6 +29,7 @@ class Pizza:
     def dough(self, value):
         if value is None:
             raise ValueError("You should add dough to the pizza")
+        self.__dough = value
 
     @property
     def max_number_of_toppings(self):
@@ -41,10 +42,14 @@ class Pizza:
         self.__max_number_of_toppings = value
 
     def add_topping(self, topping: Type[Topping]):
-        if len(self.toppings) + 1 == self.__max_number_of_toppings:
+        if len(self.toppings) == self.max_number_of_toppings:
             raise ValueError("Not enough space for another topping")
-        topping_details = {top for top in self.toppings if topping == self.toppings}
-        topping_name = next(iter(topping_details.keys()))
+        # topping_details = {top for top in self.toppings if topping == self.toppings}
+        # topping_name = next(iter(topping_details.keys()))
+        if topping.topping_type in self.toppings:
+            self.toppings[topping.topping_type] += topping.weight
+        else:
+            self.toppings[topping.topping_type] = topping.weight
 
     def calculate_total_weight(self):
-        pass
+        return self.dough.weight + sum(self.toppings.values())
