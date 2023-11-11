@@ -21,8 +21,7 @@ class Storage:
         self.documents.append(document) if document not in self.documents else None
 
     def __object_grep(self, provided_id, class_name):
-        object_grep = next((obj for obj in getattr(self, class_name) if obj.id == provided_id), None)
-        return object_grep
+        return next((obj for obj in getattr(self, class_name) if obj.id == provided_id), None)
 
     def edit_category(self, category_id: int, new_name: str):
         CTE = self.__object_grep(category_id, 'categories')
