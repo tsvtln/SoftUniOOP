@@ -42,7 +42,8 @@ class Gym:
         equipment_grep_id = next((obj for obj in self.equipment if obj.id == equipment_id), None)
         plan_id = exercise_grep.id
         plan_grep_id = next((obj for obj in self.plans if obj.id == plan_id), None)
-        # to_print = [repr(subscription_grep_id), repr(customer_id), repr(trainer_id), repr(equipment_id), repr(plan_id)]
+        # to_print = [repr(subscription_grep_id), repr(customer_id), repr(trainer_id),
+        # repr(equipment_id), repr(plan_id)]
         # print(f'test print\n sub_grep_id: {subscription_grep_id} \n cust_id: {customer_id} \n train_id: {trainer_id}'
         #       f'\n exer_id: {exercise_id}\n exer_grep: {exercise_grep}\n equ_id: {equipment_id} \nplan_id: {plan_id}')
         to_print = [repr(subscription_grep_id), repr(customer_grep_id), repr(trainer_grep_id), repr(equipment_grep_id),
