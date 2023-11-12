@@ -47,9 +47,11 @@ class Gym:
         # print(f' test print\n sub_grep_id: {subscription_grep_id} \n cust_id: {customer_id} \n train_id: {trainer_id}'
         #       f'\n exercise_id: {exercise_id}\n exercise_grep: {exercise_grep}\n
         #       equ_id: {equipment_id} \n plan_id: {plan_id}')
-        to_print = [repr(subscription_grep_id),
-                    repr(customer_grep_id),
-                    repr(trainer_grep_id),
-                    repr(equipment_grep_id),
-                    repr(plan_grep_id)]
+        to_print = [
+            repr(subscription_grep_id),
+            repr(customer_grep_id),
+            repr(trainer_grep_id),
+            repr(equipment_grep_id),
+            repr(plan_grep_id)
+        ]
         return '\n'.join(to_print)
