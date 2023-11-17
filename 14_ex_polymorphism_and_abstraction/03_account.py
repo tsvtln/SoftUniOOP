@@ -61,6 +61,7 @@ class Account:
         return self.balance >= value.balance
 
 
+# test code
 acc = Account('bob', 10)
 acc2 = Account('john')
 print(acc)
