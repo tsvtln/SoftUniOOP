@@ -1,7 +1,7 @@
 def even_parameters(function):
     def wrapper(*args, **kwargs):
         if not all(isinstance(value, int) for value in args) or any(value % 2 != 0 for value in args):
-            return 'Please use only even numbers'
+            return 'Please use only even numbers!'
         return function(*args, **kwargs)
 
     return wrapper
