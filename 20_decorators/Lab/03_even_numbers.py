@@ -1,5 +1,8 @@
+from functools import wraps
+
+
 def even_numbers(function):
-    # @wrapper(function)
+    @wraps(function)
     def wrapper(numbers):
 
         lst = []
@@ -10,7 +13,10 @@ def even_numbers(function):
 
     return wrapper
 
+
 @even_numbers
 def get_numbers(numbers):
     return numbers
+
+
 print(get_numbers([1, 2, 3, 4, 5]))
