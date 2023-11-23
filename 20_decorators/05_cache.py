@@ -1,12 +1,9 @@
 def cache(function):
     def wrapper(n):
-        if not hasattr(fibonacci, 'log'):
-            fibonacci.log = {}
+        wrapper.log.setdefault(n, function(n))
+        return wrapper.log[n]
 
-        if n not in fibonacci.log:
-            fibonacci.log[n] = function(n)
-        return fibonacci.log[n]
-
+    wrapper.log = {}
     return wrapper
 
 
