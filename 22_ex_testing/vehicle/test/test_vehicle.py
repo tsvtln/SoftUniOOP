@@ -46,7 +46,6 @@ class TestVehicle(unittest.TestCase):
         self.vehicle.refuel(fuel=self.vehicle.capacity)
         self.assertEqual(self.vehicle.capacity, self.vehicle.fuel)
 
-
     def test__str(self):
         obj = self.vehicle
         expected_string = f"The vehicle has {self.vehicle.horse_power} " \
