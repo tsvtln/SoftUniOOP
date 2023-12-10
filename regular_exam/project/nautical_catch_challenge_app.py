@@ -59,24 +59,6 @@ class NauticalCatchChallengeApp:
         else:
             return f"{fish_type} is forbidden for chasing in our competition."
 
-    # def swim_into_competition(self, fish_type: str, fish_name: str, points: float):
-    #     diver_allowed_fish_types = {
-    #         'ScubaDiver': ['PredatoryFish'],
-    #         'FreeDiver': ['DeepSeaFish', 'PredatoryFish'],
-    #     }
-    #
-    #     diver_type = fish_type[:-4]
-    #     if fish_type not in diver_allowed_fish_types.get(diver_type, []):
-    #         return f"{fish_type} is forbidden for chasing in our competition."
-    #
-    #     fish_exist_check = [fish for fish in self.fish_list if fish_name == fish.name]
-    #     if fish_exist_check:
-    #         return f"{fish_name} is already permitted."
-    #     else:
-    #         fish = globals()[fish_type](fish_name, points)
-    #         self.fish_list.append(fish)
-    #         return f"{fish_name} is allowed for chasing as a {fish_type}."
-
     def chase_fish(self, diver_name: str, fish_name: str, is_lucky: bool):
         # Diver Validation:
         check_diver_existence = [diver for diver in self.divers if diver_name == diver.name]
@@ -91,13 +73,15 @@ class NauticalCatchChallengeApp:
         fish_exist_check = fish_exist_check[0]
 
         # Health Check:
-        if check_diver_existence.has_health_issue is True:
+        if check_diver_existence.has_health_issue or check_diver_existence.oxygen_level <= 0:
+            check_diver_existence.has_health_issue = True
             return f"{diver_name} will not be allowed to dive, due to health issues."
 
         # Oxygen Level Comparison
         time_to_catch_fish = fish_exist_check.time_to_catch
         oxygen_level_diver = check_diver_existence.oxygen_level
-        if oxygen_level_diver - time_to_catch_fish < 0:
+
+        if oxygen_level_diver < time_to_catch_fish:
             check_diver_existence.miss(time_to_catch_fish)
             check_diver_existence.has_health_issue = True
             return f"{diver_name} missed a good {fish_name}."
@@ -106,8 +90,7 @@ class NauticalCatchChallengeApp:
             if is_lucky:
                 check_diver_existence.hit(fish_exist_check)
                 return f"{diver_name} hits a {fish_exist_check.points}pt. {fish_name}."
-
-            elif not is_lucky:
+            else:
                 check_diver_existence.miss(time_to_catch_fish)
                 check_diver_existence.has_health_issue = True
                 return f"{diver_name} missed a good {fish_name}."
@@ -119,15 +102,24 @@ class NauticalCatchChallengeApp:
         # Zero Oxygen Level Handling:
         if oxygen_level_diver <= 0:
             check_diver_existence._has_health_issue = True
+            return f"{diver_name} will not be allowed to dive, due to health issues."
+
+    # def health_recovery(self):
+    #     divers_count = 0
+    #     for diver in self.divers:
+    #         health_status = diver.has_health_issue
+    #         if health_status:
+    #             # diver.has_health_issue = False
+    #             diver.renew_oxy()
+    #             divers_count += 1
+    #     return f"Divers recovered: {divers_count}"
 
     def health_recovery(self):
         divers_count = 0
         for diver in self.divers:
-            health_status = diver.has_health_issue
-            if health_status:
-                diver.update_health_status()
-                diver.renew_oxy()
-                divers_count += 1
+            diver.renew_oxy()
+            diver.has_health_issue = False
+            divers_count += 1
         return f"Divers recovered: {divers_count}"
 
     def diver_catch_report(self, diver_name: str):
@@ -138,12 +130,11 @@ class NauticalCatchChallengeApp:
             to_return.append(catches.fish_details())
         return '\n'.join(to_return)
 
-
     def competition_statistics(self):
         sorted_divers = sorted([diver for diver in self.divers if not diver.has_health_issue],
                                key=lambda x: (-x.competition_points, -len(x.catch), x.name))
 
         result = [f"**Nautical Catch Challenge Statistics**"]
-        [result.append(diver.__str__()) for diver in sorted_divers]
+        [result.append(diver.__str__()) for diver in sorted_divers if not diver.has_health_issue]
 
         return "\n".join(result)
