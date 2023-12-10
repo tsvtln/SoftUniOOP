@@ -97,7 +97,7 @@ class NauticalCatchChallengeApp:
         # Oxygen Level Comparison
         time_to_catch_fish = fish_exist_check.time_to_catch
         oxygen_level_diver = check_diver_existence.oxygen_level
-        if oxygen_level_diver < time_to_catch_fish:
+        if oxygen_level_diver - time_to_catch_fish < 0:
             check_diver_existence.miss(time_to_catch_fish)
             return f"{diver_name} missed a good {fish_name}."
 
@@ -122,7 +122,7 @@ class NauticalCatchChallengeApp:
         divers_count = 0
         for diver in self.divers:
             health_status = diver.has_health_issue
-            if health_status is True:
+            if health_status:
                 diver.update_health_status()
                 diver.renew_oxy()
                 divers_count += 1

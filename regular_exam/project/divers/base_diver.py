@@ -12,13 +12,13 @@ class BaseDiver(ABC):
         self.competition_points: float = 0
         self.has_health_issue: bool = False
 
-    # @property
-    # def has_health_issue(self):
-    #     return self._has_health_issue
-    #
-    # @has_health_issue.setter
-    # def has_health_issue(self, value):
-    #     self._has_health_issue = value
+    @property
+    def has_health_issue(self):
+        return self._has_health_issue
+
+    @has_health_issue.setter
+    def has_health_issue(self, value):
+        self._has_health_issue = value
 
     @property
     def name(self):
@@ -36,8 +36,8 @@ class BaseDiver(ABC):
 
     @oxygen_level.setter
     def oxygen_level(self, value):
-    #    if value < 0:
-     #       raise ValueError("Cannot create diver with negative oxygen level!")
+        if value < 0:
+            raise ValueError("Cannot create diver with negative oxygen level!")
         self.__oxygen_level = value
 
     @property
@@ -55,7 +55,6 @@ class BaseDiver(ABC):
     @abstractmethod
     def renew_oxy(self):
         pass
-
 
     def hit(self, fish: BaseFish):
         time_to_catch_this_fish = fish.time_to_catch
@@ -77,4 +76,3 @@ class BaseDiver(ABC):
         pass
         # return f'{self.__class__.__name__}: [Name: {self.name}, Oxygen level left: {self.oxygen_level}, Fish caught:
         # {len(self.catch)}, Points earned: {self._competition_points}]'
-
