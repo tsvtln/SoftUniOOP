@@ -15,7 +15,7 @@ class ScubaDiver(BaseDiver):
         #     self.oxygen_level = round(self.oxygen_level)
         reduction_amount = round(time_to_catch * 0.30)
         self.oxygen_level = max(0, self.oxygen_level - reduction_amount)
-        if self.oxygen_level == 0:
+        if self.oxygen_level <= 0:
             self.has_health_issue = True
 
     def renew_oxy(self):

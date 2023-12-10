@@ -10,7 +10,7 @@ class FreeDiver(BaseDiver):
         # self.oxygen_level -= time_to_catch * 0.60
         reduction_amount = round(time_to_catch * 0.60)
         self.oxygen_level = max(0, self.oxygen_level - reduction_amount)
-        if self.oxygen_level == 0:
+        if self.oxygen_level <= 0:
             self.has_health_issue = True
 
     def renew_oxy(self):

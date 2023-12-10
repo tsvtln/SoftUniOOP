@@ -131,7 +131,7 @@ class NauticalCatchChallengeApp:
         return '\n'.join(to_return)
 
     def competition_statistics(self):
-        sorted_divers = sorted([diver for diver in self.divers if not diver.has_health_issue],
+        sorted_divers = sorted([diver for diver in self.divers if not diver.has_health_issue and not diver.oxygen_level == 0],
                                key=lambda x: (-x.competition_points, -len(x.catch), x.name))
 
         result = [f"**Nautical Catch Challenge Statistics**"]
