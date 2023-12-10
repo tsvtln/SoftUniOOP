@@ -50,9 +50,10 @@ class BaseDiver(ABC):
 
     @abstractmethod
     def miss(self, time_to_catch: int):
-        self.oxygen_level -= time_to_catch
-        if self.oxygen_level <= 0:
-            self.has_health_issue = True
+        # self.oxygen_level -= time_to_catch
+        # if self.oxygen_level <= 0:
+        #     self.has_health_issue = True
+        pass
 
     @abstractmethod
     def renew_oxy(self):
