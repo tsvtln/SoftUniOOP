@@ -7,11 +7,16 @@ class ScubaDiver(BaseDiver):
         super().__init__(name, 540)
 
     def miss(self, time_to_catch: int):
-        self.oxygen_level -= 0.30 * time_to_catch
+        # self.oxygen_level -= 0.30 * time_to_catch
+        # if self.oxygen_level < 0:
+        #     self.oxygen_level = 0
+        #     self.has_health_issue = True
+        # else:
+        #     self.oxygen_level = round(self.oxygen_level)
+        self.oxygen_level -= round(time_to_catch * 0.30)
         if self.oxygen_level < 0:
             self.oxygen_level = 0
-        else:
-            self.oxygen_level = round(self.oxygen_level)
+            self.has_health_issue = True
 
     def renew_oxy(self):
         self.oxygen_level = 540
