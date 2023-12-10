@@ -36,8 +36,8 @@ class BaseDiver(ABC):
 
     @oxygen_level.setter
     def oxygen_level(self, value):
-        if value < 0:
-            raise ValueError("Cannot create diver with negative oxygen level!")
+    #    if value < 0:
+     #       raise ValueError("Cannot create diver with negative oxygen level!")
         self.__oxygen_level = value
 
     @property
@@ -72,7 +72,9 @@ class BaseDiver(ABC):
         else:
             self._has_health_issue = False
 
+    @abstractmethod
     def __str__(self):
         pass
-        # return f'{self.__class__.__name__}: [Name: {self.name}, Oxygen level left: {self.oxygen_level}, Fish caught: {len(self.catch)}, Points earned: {self._competition_points}]'
+        # return f'{self.__class__.__name__}: [Name: {self.name}, Oxygen level left: {self.oxygen_level}, Fish caught:
+        # {len(self.catch)}, Points earned: {self._competition_points}]'
 
