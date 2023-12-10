@@ -58,7 +58,8 @@ class BankApp:
             client_object_2 = self.__object_grep(client_id, "Adult")
             if loan_type != 'MortgageLoan':
                 raise Exception("Inappropriate loan type!")
-            loan = next((obj for obj in getattr(self, self.loans) if obj == MortgageLoan), None)
+            loan = next((obj for obj in getattr(self, self.loans) if
+                         obj == MortgageLoan), None)
             client_object_2.loans.append(loan)
             self.loans.remove(loan)
             return (f"Successfully granted {loan_type} to {client_object_2.client_name} with ID "
