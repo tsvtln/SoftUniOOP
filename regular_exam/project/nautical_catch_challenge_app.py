@@ -65,7 +65,7 @@ class NauticalCatchChallengeApp:
     #         'FreeDiver': ['DeepSeaFish', 'PredatoryFish'],
     #     }
     #
-    #     diver_type = fish_type[:-4]  # Remove "Fish" to get the corresponding diver type
+    #     diver_type = fish_type[:-4] 
     #     if fish_type not in diver_allowed_fish_types.get(diver_type, []):
     #         return f"{fish_type} is forbidden for chasing in our competition."
     #
