@@ -98,7 +98,8 @@ class NauticalCatchChallengeApp:
         time_to_catch_fish = fish_exist_check.time_to_catch
         oxygen_level_diver = check_diver_existence.oxygen_level
         if oxygen_level_diver - time_to_catch_fish < 0:
-            check_diver_existence.miss(time_to_catch_fish)
+            #check_diver_existence.miss(time_to_catch_fish)
+            check_diver_existence.has_health_issue = True
             return f"{diver_name} missed a good {fish_name}."
 
         elif oxygen_level_diver == time_to_catch_fish:
@@ -108,6 +109,7 @@ class NauticalCatchChallengeApp:
 
             elif not is_lucky:
                 check_diver_existence.miss(time_to_catch_fish)
+                check_diver_existence.has_health_issue = True
                 return f"{diver_name} missed a good {fish_name}."
 
         elif oxygen_level_diver > time_to_catch_fish:
