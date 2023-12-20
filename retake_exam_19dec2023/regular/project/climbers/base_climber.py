@@ -10,7 +10,7 @@ class BaseClimber(ABC):
         self.strength = strength
         self.conquered_peaks: List[BasePeak] = []
         self.is_prepared: bool = True
-        self.enough_strength: bool = True
+        # self.enough_strength: bool = True
 
     @property
     def name(self):

@@ -8,9 +8,9 @@ class SummitClimber(BaseClimber):
 
     def can_climb(self):
         if self.strength >= 75:
-            self.enough_strength = True
+            return True
         else:
-            self.enough_strength = False
+            return False
 
     def climb(self, peak: BasePeak):
         # self.can_climb()

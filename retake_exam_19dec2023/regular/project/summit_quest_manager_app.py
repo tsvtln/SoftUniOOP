@@ -109,7 +109,7 @@ class SummitQuestManagerApp:
 
         climber_exist.can_climb()
 
-        if climber_exist.is_prepared and climber_exist.enough_strength:
+        if climber_exist.is_prepared and climber_exist.can_climb():
             climber_exist.climb(peak_exist)
             return (f"{climber_name} conquered {peak_name} "
                     f"whose difficulty level is {peak_exist.difficulty_level}.")
